@@ -87,9 +87,9 @@ class RadioTest {
     @Test
     void shouldSetCurrentVolumeAboveLimit() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(50);
+        rad.setCurrentVolume(150);
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -97,11 +97,11 @@ class RadioTest {
     @Test
     void shouldCheckHigherVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(101);
 
         rad.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -109,7 +109,7 @@ class RadioTest {
     @Test
     void shouldCheckLowerVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(0);
+        rad.setCurrentVolume(-1);
 
         rad.decreaseVolume();
 
