@@ -8,7 +8,7 @@ class RadioTest {
 
     @Test
     void shouldSetCurrentStationBelowLimit() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(10);
         rad.setCurrentStation(-5);
 
         int expected = 0;
@@ -17,8 +17,18 @@ class RadioTest {
     }
 
     @Test
+    void shouldSetStation15() {
+        Radio rad = new Radio(20);
+        rad.setCurrentStation(15);
+
+        int expected = 15;
+        int actual = rad.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void shouldSetCurrentStationAboveLimit() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(10);
         rad.setCurrentStation(12);
 
         int expected = 9;
@@ -28,7 +38,7 @@ class RadioTest {
 
     @Test
     void setNextStationAboveMax() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(10);
         rad.setCurrentStation(9);
 
         rad.nextStation();
@@ -40,7 +50,7 @@ class RadioTest {
 
     @Test
     void setNextStationBelowMin() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(10);
         rad.setCurrentStation(0);
 
         rad.previousStation();
@@ -87,9 +97,9 @@ class RadioTest {
     @Test
     void shouldSetCurrentVolumeAboveLimit() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(50);
+        rad.setCurrentVolume(150);
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -97,11 +107,11 @@ class RadioTest {
     @Test
     void shouldCheckHigherVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(101);
 
         rad.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -109,7 +119,7 @@ class RadioTest {
     @Test
     void shouldCheckLowerVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(0);
+        rad.setCurrentVolume(-1);
 
         rad.decreaseVolume();
 
